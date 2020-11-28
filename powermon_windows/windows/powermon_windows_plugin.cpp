@@ -43,7 +43,7 @@ void PowermonWindowsPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "power_mon/method",
+          registrar->messenger(), "powermon/method",
           &flutter::StandardMethodCodec::GetInstance());
 
   auto plugin = std::make_unique<PowermonWindowsPlugin>();
