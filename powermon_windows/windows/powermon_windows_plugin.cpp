@@ -2,7 +2,10 @@
 
 // This must be included before many other Windows headers.
 #include <windows.h>
-
+#include <winrt/Windows.Foundation.h>
+// For power management functions; remove unless needed for plugin
+// implementation
+#include <winrt/Windows.System.Power.h>
 // For getPlatformVersion; remove unless needed for your plugin implementation.
 #include <VersionHelpers.h>
 
@@ -16,15 +19,19 @@
 
 namespace {
 
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Foundation::Collections;
+using namespace winrt::Windows::Storage::Streams;
+
 class PowermonWindowsPlugin : public flutter::Plugin {
- public:
+public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
   PowermonWindowsPlugin();
 
   virtual ~PowermonWindowsPlugin();
 
- private:
+private:
   // Called when a method is called on this plugin's channel from Dart.
   void HandleMethodCall(
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
@@ -36,7 +43,7 @@ void PowermonWindowsPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "powermon_windows",
+          registrar->messenger(), "power_mon/method",
           &flutter::StandardMethodCodec::GetInstance());
 
   auto plugin = std::make_unique<PowermonWindowsPlugin>();
@@ -72,7 +79,7 @@ void PowermonWindowsPlugin::HandleMethodCall(
   }
 }
 
-}  // namespace
+} // namespace
 
 void PowermonWindowsPluginRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar) {
