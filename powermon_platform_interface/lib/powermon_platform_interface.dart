@@ -4,16 +4,16 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'method_channel_powermon.dart';
 
-abstract class PowerMonPlatform extends PlatformInterface {
-  PowerMonPlatform() : super(token: _token);
+abstract class PowermonPlatform extends PlatformInterface {
+  PowermonPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static PowerMonPlatform _instance = MethodChannelPowerMon();
+  static PowermonPlatform _instance = MethodChannelPowermon();
 
-  static PowerMonPlatform get instance => _instance;
+  static PowermonPlatform get instance => _instance;
 
-  static set instance(PowerMonPlatform instance) {
+  static set instance(PowermonPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

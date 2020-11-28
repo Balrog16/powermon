@@ -15,7 +15,7 @@ class Powermon {
 
   Powermon._();
   static Powermon _singleton;
-  static PowerMonPlatform get _platform => PowerMonPlatform.instance;
+  static PowermonPlatform get _platform => PowermonPlatform.instance;
 
   Future<String> get getPlatformVersion {
     return _platform.getPlatformVersion;
