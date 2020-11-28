@@ -18,5 +18,8 @@ abstract class PowerMonPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  String getPlatformVersion();
+  /// Checks the connection status of the device.
+  Future<String> get getPlatformVersion {
+    throw UnimplementedError('getPlatformversion() has not been implemented.');
+  }
 }

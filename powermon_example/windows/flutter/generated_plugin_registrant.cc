@@ -4,9 +4,9 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <powermon_example/powermon_example_plugin.h>
+#include <powermon_windows/powermon_windows_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  PowermonExamplePluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("PowermonExamplePlugin"));
+  PowermonWindowsPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("PowermonWindowsPlugin"));
 }

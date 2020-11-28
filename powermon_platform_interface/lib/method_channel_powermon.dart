@@ -6,11 +6,7 @@ class MethodChannelPowerMon extends PowerMonPlatform {
 
   MethodChannelPowerMon() {}
 
-  @override
-  String getPlatformVersion() {
-    final String version = _method
-        .invokeMethod('getPlatformVersion')
-        .then((_) => print('Invoke getPlatformVersion'));
-    return version;
-  }
+  Future<String> get getPlatformVersion => _method
+      .invokeMethod<String>('getPlatformVersion')
+      .then<String>((dynamic result) => result);
 }

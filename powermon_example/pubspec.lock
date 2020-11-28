@@ -88,10 +88,31 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.3"
-  powermon_example:
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  powermon:
     dependency: "direct main"
     description:
-      path: ".."
+      path: "../powermon"
+      relative: true
+    source: path
+    version: "0.0.1"
+  powermon_platform_interface:
+    dependency: transitive
+    description:
+      path: "../powermon_platform_interface"
+      relative: true
+    source: path
+    version: "0.0.1"
+  powermon_windows:
+    dependency: transitive
+    description:
+      path: "../powermon_windows"
       relative: true
     source: path
     version: "0.0.1"

@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  powermon_example
+  powermon_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
