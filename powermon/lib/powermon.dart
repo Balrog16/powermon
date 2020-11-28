@@ -7,12 +7,9 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class Powermon {
-  static const MethodChannel _channel =
-      const MethodChannel('powermon');
+import 'package:powermon_platform_interface/powermon_platform_interface.dart';
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
+class Powermon {
+  static String getPlatformVersion() =>
+      PowerMonPlatform.instance.getPlatformVersion();
 }
