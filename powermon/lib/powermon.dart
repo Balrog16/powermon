@@ -6,7 +6,18 @@
 import 'package:powermon_platform_interface/powermon_platform_interface.dart';
 
 class Powermon {
-  static Future<String> get getPlatformVersion {
-    return PowerMonPlatform.instance.getPlatformVersion;
+  factory Powermon() {
+    if (_singleton == null) {
+      _singleton = Powermon._();
+    }
+    return _singleton;
+  }
+
+  Powermon._();
+  static Powermon _singleton;
+  static PowerMonPlatform get _platform => PowerMonPlatform.instance;
+
+  Future<String> get getPlatformVersion {
+    return _platform.getPlatformVersion;
   }
 }
