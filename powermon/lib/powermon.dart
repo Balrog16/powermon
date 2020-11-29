@@ -20,4 +20,9 @@ class Powermon {
   Future<String> get getPlatformVersion {
     return _platform.getPlatformVersion;
   }
+
+  /// Is called or invoked as and when the percentage charge changes
+  Stream<String> get onChargePercentageChanged {
+    return _platform.onChargePercentageChanged;
+  }
 }
