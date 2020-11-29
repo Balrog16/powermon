@@ -18,8 +18,14 @@ abstract class PowermonPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  /// Checks the connection status of the device.
+  ///
   Future<String> get getPlatformVersion {
     throw UnimplementedError('getPlatformversion() has not been implemented.');
+  }
+
+  ///
+  Stream<String> get onChargePercentageChanged {
+    throw UnimplementedError(
+        'get onChargePercentageChanged is not implmeneted yet');
   }
 }
