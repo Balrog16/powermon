@@ -15,10 +15,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _percentCharge = 'Cant Read';
   Powermon _powermon = Powermon();
+
+  ///Declare subscription here
+  StreamSubscription<String> _subscribeBatteryPercentage;
+
   @override
   void initState() {
     super.initState();
+    _subscribeBatteryPercentage =
+        _powermon.onChargePercentageChanged.listen((String strCharge) {
+      setState(() {
+        _percentCharge = strCharge;
+      });
+    });
     initPlatformState();
   }
 
@@ -50,9 +61,18 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text(
+              'Running on: $_platformVersion with $_percentCharge Battery\n'),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (_subscribeBatteryPercentage != null) {
+      _subscribeBatteryPercentage.cancel();
+    }
   }
 }
