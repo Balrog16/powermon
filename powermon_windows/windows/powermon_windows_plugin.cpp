@@ -115,19 +115,14 @@ void PowermonWindowsPlugin::HandleMethodCall(
       version_stream << "7";
     }
 
-    // PowerManager powerMan{};
-    event_token evtBatterChargeChange =
-        PowerManager::RemainingChargePercentChanged(
-            {&PowermonWindowsPlugin::RemainingChargeChanged});
-
     result->Success(flutter::EncodableValue(version_stream.str()));
   } else if (method_call.method_name().compare("onChargePercentageChanged") ==
              0) {
     if (!bCreated) {
-      /*PowerManager powerMan{};
+
       event_token evtBatterChargeChange =
-          powerMan.RemainingChargePercentChanged(
-              {&PowermonWindowsPlugin::RemainingChargeChanged});*/
+          PowerManager::RemainingChargePercentChanged(
+              {this, &PowermonWindowsPlugin::RemainingChargeChanged});
     }
     result->Success(nullptr);
   } else {
@@ -140,10 +135,10 @@ void PowermonWindowsPlugin::RemainingChargeChanged(
     winrt::Windows::Foundation::IInspectable args) {
   /// Obtain the remaining charge changed information
   /// Add scan result sink
-  // int remCharge = PowerManager::RemainingChargePercent();
+  int remCharge = PowerManager::RemainingChargePercent();
 
   if (scan_result_sink_) {
-    scan_result_sink_->Success("Surya");
+    scan_result_sink_->Success(std::to_string(remCharge));
   }
 }
 
