@@ -15,7 +15,10 @@ class MethodChannelPowermon extends PowermonPlatform {
 
   Stream<String> get onChargePercentageChanged {
     if (_onBatteryChargeChanged == null) {
-      _onBatteryChargeChanged = _eventCh.receiveBroadcastStream();
+      _onBatteryChargeChanged =
+          _eventCh.receiveBroadcastStream().map((dynamic event) {
+        return event;
+      });
     }
     return _onBatteryChargeChanged;
   }
