@@ -14,7 +14,7 @@ if(NOT NUGET_EXE)
 endif()
 
 exec_program(${NUGET_EXE}
-    ARGS install "Microsoft.Windows.CppWinRT" -Version 2.0.201102.2 -ExcludeVersion -OutputDirectory ${CMAKE_BINARY_DIR}/packages)
+    ARGS install "Microsoft.Windows.CppWinRT" -Version 2.0.201113.7 -ExcludeVersion -OutputDirectory ${CMAKE_BINARY_DIR}/packages)
 
 add_library(${PLUGIN_NAME} SHARED
   "${PLUGIN_NAME}.cpp"
