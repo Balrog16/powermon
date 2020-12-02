@@ -14,7 +14,9 @@ class MethodChannelPowermon extends PowermonPlatform {
       .then<String>((dynamic result) => result);
 
   Stream<String> get onChargePercentageChanged {
+    print('Yes that is me...');
     if (_onBatteryChargeChanged == null) {
+      print('Is that right?');
       _onBatteryChargeChanged =
           _eventCh.receiveBroadcastStream().map((dynamic event) {
         return event;

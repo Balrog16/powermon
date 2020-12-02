@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     _subscribeBatteryPercentage =
         _powermon.onChargePercentageChanged.listen((String strCharge) {
       setState(() {
+        print("Has the battery level changed?");
         _percentCharge = strCharge;
       });
     });

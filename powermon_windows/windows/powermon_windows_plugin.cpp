@@ -16,6 +16,7 @@
 #include <flutter/plugin_registrar_windows.h>
 #include <flutter/standard_method_codec.h>
 
+#include <iostream>
 #include <map>
 #include <memory>
 #include <sstream>
@@ -105,6 +106,8 @@ void PowermonWindowsPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
   if (method_call.method_name().compare("getPlatformVersion") == 0) {
+    OutputDebugString(L"Inisude getplatform\n");
+    std::cout << "Outside or Inside";
     std::ostringstream version_stream;
     version_stream << "Windows ";
     if (IsWindows10OrGreater()) {
@@ -115,6 +118,14 @@ void PowermonWindowsPlugin::HandleMethodCall(
       version_stream << "7";
     }
 
+    if (!bCreated) {
+
+      event_token evtBatterChargeChange =
+          PowerManager::RemainingChargePercentChanged(
+              {this, &PowermonWindowsPlugin::RemainingChargeChanged});
+      bCreated = true;
+    }
+
     result->Success(flutter::EncodableValue(version_stream.str()));
   } else if (method_call.method_name().compare("onChargePercentageChanged") ==
              0) {
@@ -123,6 +134,7 @@ void PowermonWindowsPlugin::HandleMethodCall(
       event_token evtBatterChargeChange =
           PowerManager::RemainingChargePercentChanged(
               {this, &PowermonWindowsPlugin::RemainingChargeChanged});
+      bCreated = true;
     }
     result->Success(nullptr);
   } else {
@@ -136,7 +148,7 @@ void PowermonWindowsPlugin::RemainingChargeChanged(
   /// Obtain the remaining charge changed information
   /// Add scan result sink
   int remCharge = PowerManager::RemainingChargePercent();
-
+  OutputDebugString(L"Has the battery level changed\n");
   if (scan_result_sink_) {
     scan_result_sink_->Success(std::to_string(remCharge));
   }
